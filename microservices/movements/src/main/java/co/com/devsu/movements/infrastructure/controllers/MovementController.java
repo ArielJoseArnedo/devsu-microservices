@@ -24,11 +24,10 @@ public class MovementController {
         this.movementTransformer = movementTransformer;
     }
 
-    @PostMapping(value = "/movimientos", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/movements", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     public Mono<ResponseEntity<RegisterMovementResponse>> registerAccount(@RequestBody RegisterMovementRequest registerMovementRequest) {
         return Mono.just(movementTransformer.toDomain(registerMovementRequest))
           .flatMap(movement -> movementService.registerMovement(movement, registerMovementRequest.getClientId(), registerMovementRequest.getNumberAccount()))
-//          .doOnSuccess(client -> publisher.publish(new ClientRegisted(client)))
           .map(movement -> new RegisterMovementResponse(movement.getAmount()))
           .map(ResponseEntity::ok)
           .defaultIfEmpty(ResponseEntity.notFound().build())

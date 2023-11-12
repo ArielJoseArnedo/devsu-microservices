@@ -12,4 +12,6 @@ public interface AccountRepository {
     Flux<Account> findByClient(String clientId);
     Mono<Account> update(Account account);
     Mono<Account> delete(Account account);
+
+    Flux<Account> findAll();
 }

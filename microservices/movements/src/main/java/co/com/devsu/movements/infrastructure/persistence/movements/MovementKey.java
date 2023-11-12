@@ -17,6 +17,6 @@ public class MovementKey implements Serializable {
 
     AccountKey accountKey;
 
-    @Column(name = "movements_id")
+    @Column(name = "movement_id")
     private String id;
 }

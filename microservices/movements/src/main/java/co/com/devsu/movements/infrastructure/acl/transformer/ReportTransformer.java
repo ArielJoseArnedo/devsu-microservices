@@ -16,23 +16,24 @@ public interface ReportTransformer {
     default ReportResponse toReportAccount(Account account) {
         return AccountReportResponse.builder()
           .numberAccount(account.getNumberAccount())
-          .accountType(account.getAccountType())
-          .balance(account.getBalance())
-          .state(account.getState())
-          .client("")
+          .accountType(account.getAccountType().name())
+          .balance(account.getGeneralBalance())
+          .state(account.getState().name())
+          .client(account.getClientName())
           .build();
     }
 
     default ReportResponse toReportMovements(Account account, Movement movement) {
         return MovementReportReponse.builder()
           .date(movement.getRegistrationDate().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")))
-          .client("")
+          .client(account.getClientName())
           .numberAccount(account.getNumberAccount())
-          .accountType(account.getAccountType())
-          .openingBalance(0.0)
-          .state(account.getState())
+          .accountType(account.getAccountType().name())
+          .balance(account.getGeneralBalance())
+          .state(account.getState().name())
+          .movementType(movement.getMovementType().name())
           .movement(movement.getAmount())
-          .balance(account.getBalance())
+          .balance(movement.getBalance())
           .build();
     }
 }

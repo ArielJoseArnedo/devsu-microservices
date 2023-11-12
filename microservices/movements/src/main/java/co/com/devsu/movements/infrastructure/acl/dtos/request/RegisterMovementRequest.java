@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor
 public class RegisterMovementRequest {
+
     private String clientId;
     private String numberAccount;
     private String movementType;

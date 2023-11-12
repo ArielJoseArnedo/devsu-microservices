@@ -1,5 +1,8 @@
-\c clients;
+-- creats databases
+create database clients;
+create database movements;
 
+-- creates tables for the client database
 CREATE TABLE persons
 (
     identification                  VARCHAR(120)        NOT NULL,
@@ -12,11 +15,11 @@ CREATE TABLE persons
 );
 
 COMMENT ON TABLE persons IS 'Table of persons';
-COMMENT ON COLUMN persons.name IS 'Represents the client`s name';
-COMMENT ON COLUMN persons.gender IS 'Represents the client`s gender';
-COMMENT ON COLUMN persons.age IS 'Represents the client`s age';
-COMMENT ON COLUMN persons.address IS 'Represents the client`s address';
-COMMENT ON COLUMN persons.phone IS 'Represents the nomber client`s name';
+COMMENT ON COLUMN persons.name IS 'Represents the customer`s name';
+COMMENT ON COLUMN persons.gender IS 'Represents the customer`s gender';
+COMMENT ON COLUMN persons.age IS 'Represents the customer`s age';
+COMMENT ON COLUMN persons.address IS 'Represents the customer`s address';
+COMMENT ON COLUMN persons.phone IS 'Represents the nomber phone`s name';
 
 CREATE TABLE clients
 (
@@ -33,4 +36,4 @@ COMMENT ON COLUMN clients.client_id IS 'Represents the client`s identificacion I
 COMMENT ON COLUMN clients.password IS 'Represents the client`s password';
 COMMENT ON COLUMN clients.state IS 'Represents the client`s state (ACTIVE, INACTIVE, UNKNOWN)';
 
-
+-- creates tables for the movements database

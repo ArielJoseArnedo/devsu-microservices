@@ -10,5 +10,4 @@ import lombok.NoArgsConstructor;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ClientDeletedMessage implements Message {
     private String clientId;
-    private String name;
 }

@@ -3,7 +3,7 @@ package co.com.devsu.movements.infrastructure.messaging.suscribers;
 import co.com.devsu.movements.infrastructure.events.Event;
 import co.com.devsu.movements.infrastructure.messaging.listeners.Listener;
 import co.com.devsu.movements.infrastructure.messaging.listeners.clientdeleted.ClientDeletedListener;
-import co.com.devsu.movements.infrastructure.messaging.listeners.clientregisted.ClientRegistedListener;
+import co.com.devsu.movements.infrastructure.messaging.listeners.clientupdated.ClientUpdatedListener;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.vavr.Tuple;
@@ -24,9 +24,9 @@ public class Suscriber implements SuscriberUtil {
     private final ObjectMapper objectMapper;
 
     @Autowired
-    public Suscriber(ClientRegistedListener clientRegistedListener, ClientDeletedListener clientDeletedListener, ObjectMapper objectMapper) {
+    public Suscriber(ClientUpdatedListener clientUpdatedListener, ClientDeletedListener clientDeletedListener, ObjectMapper objectMapper) {
         this.listeners = List.of(
-          clientRegistedListener,
+          clientUpdatedListener,
           clientDeletedListener
         );
         this.objectMapper = objectMapper;

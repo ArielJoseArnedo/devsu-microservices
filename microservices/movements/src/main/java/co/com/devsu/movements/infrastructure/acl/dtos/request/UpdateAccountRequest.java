@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class UpdateAccountRequest {
     private String clientId;
+    private String clientName;
     private String numberAccount;
     private String accountType;
     private String state;

@@ -30,6 +30,9 @@ public class MovementRecord {
     @Column(name = "amount")
     private double amount;
 
+    @Column(name = "balance")
+    private double balance;
+
     @Column(name = "registration_date")
     private Timestamp registrationDate;
 

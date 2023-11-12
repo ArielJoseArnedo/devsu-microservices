@@ -45,8 +45,23 @@ public class AccountService {
         return accountRepository.findByClient(clientId);
     }
 
+    public Flux<Account> getOneOrAccounts(Option<String> clientIdOpt) {
+        log.info("One or all accounts will be searched according to: {}", clientIdOpt);
+        return clientIdOpt
+          .map(accountRepository::findByClient)
+          .getOrElse(accountRepository::findAll);
+    }
+
     public Mono<Option<Account>> getAccountByClient(String clientId, String numberAccount) {
         return accountRepository.findByClientAndNumberAccount(clientId, numberAccount);
+    }
+
+    public Mono<Account> deleteAccount(String clientId, String numberAccount) {
+        return accountRepository.findByClientAndNumberAccount(clientId, numberAccount)
+          .flatMap(accountOpt -> accountOpt
+            .map(accountRepository::delete)
+            .getOrElse(Mono.error(new AccountNotFound("The account does not exist")))
+          );
     }
 
     public Mono<Account> deleteAccount(Account account) {

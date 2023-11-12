@@ -55,7 +55,7 @@ public class AccountJpaRepository implements AccountRepository, AccountMapper {
     public Mono<Account> update(Account account) {
         return Mono.just(toRecord(account))
           .map(accountDAO::save)
-          .map(accountRecord -> account);
+          .map(this::toDomain);
     }
 
     @Override
@@ -66,5 +66,11 @@ public class AccountJpaRepository implements AccountRepository, AccountMapper {
               accountDAO.delete(accountRecord);
               return account;
           });
+    }
+
+    @Override
+    public Flux<Account> findAll() {
+        return Flux.fromIterable(accountDAO.findAll())
+          .map(this::toDomain);
     }
 }

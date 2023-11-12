@@ -1,5 +1,8 @@
 package co.com.devsu.movements.infrastructure.acl.dtos.response;
 
+import co.com.devsu.movements.domain.models.AccountState;
+import co.com.devsu.movements.domain.models.AccountType;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -7,14 +10,11 @@ import lombok.RequiredArgsConstructor;
 @Getter
 @Builder
 @RequiredArgsConstructor
-public class MovementReportReponse implements ReportResponse{
-    private final String date;
-    private final String client;
+public class GetAccountResponse {
+    private final String clientId;
+    private final String clientName;
     private final String numberAccount;
     private final String accountType;
-    private final double openingBalance;
+    private final double generalBalance;
     private final String state;
-    private final String movementType;
-    private final double movement;
-    private final double balance;
 }

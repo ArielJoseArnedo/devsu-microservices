@@ -26,11 +26,14 @@ public class AccountRecord {
     @EmbeddedId
     private AccountKey accountKey;
 
+    @Column(name = "client_name")
+    private String clientName;
+
     @Column(name = "account_type")
     private String accountType;
 
-    @Column(name = "balance")
-    private double balance;
+    @Column(name = "general_balance")
+    private double generalBalance;
 
     @Column(name = "state")
     private String state;

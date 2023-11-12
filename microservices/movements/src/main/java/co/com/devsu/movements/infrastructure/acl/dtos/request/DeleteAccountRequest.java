@@ -5,10 +5,7 @@ import lombok.NoArgsConstructor;
 
 @Getter
 @NoArgsConstructor
-public class RegisterAccountRequest {
+public class DeleteAccountRequest {
     private String clientId;
-    private String clientName;
     private String numberAccount;
-    private String accountType;
-    private double openingBalance;
 }

@@ -1,0 +1,335 @@
+{
+	"info": {
+		"_postman_id": "3c9512c7-bcaa-49aa-ada7-6aaa4375b39b",
+		"name": "Devsu",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "1. microservice-clients",
+			"item": [
+				{
+					"name": "register-client",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"clientId\": \"b8d66530-86c0-4d43-8983-4a6128824240\",\n\t\"password\": \"Contraseña\",\n\t\"state\": \"ACTIVE\",\n\t\"name\": \"M\",\n\t\"identification\": \"10102542\",\n\t\"gender\": \"MALE\",\n\t\"age\": 17,\n\t\"address\": \"Calle 13 #34-8\",\n\t\"phone\": \"3024490095\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_base_microservice_client}}/clients",
+							"host": [
+								"{{url_base_microservice_client}}"
+							],
+							"path": [
+								"clients"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update-client",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"clientId\": \"2bc6fe15-bd24-495c-b994-0a705f7b5b82\",\n    \"name\": \"Maria Arnedo\",\n    \"age\": 21\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_base_microservice_client}}/clients",
+							"host": [
+								"{{url_base_microservice_client}}"
+							],
+							"path": [
+								"clients"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get-one-client",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url_base_microservice_client}}/clients?id=a8d66530-86c0-4d83-8f83-4a61288242b9",
+							"host": [
+								"{{url_base_microservice_client}}"
+							],
+							"path": [
+								"clients"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "a8d66530-86c0-4d83-8f83-4a61288242b9"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get-all-clients",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url_base_microservice_client}}/clients",
+							"host": [
+								"{{url_base_microservice_client}}"
+							],
+							"path": [
+								"clients"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete-client",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"clientId\": \"b8d66530-86c0-4d43-8983-4a6128824249\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_base_microservice_client}}/clients",
+							"host": [
+								"{{url_base_microservice_client}}"
+							],
+							"path": [
+								"clients"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "2. microservice-movements",
+			"item": [
+				{
+					"name": "register-account",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"clientId\": \"2bc6fe15-bd24-495c-b994-0a705f7b5b82\",\n    \"clientName\": \"M\", \n\t\"numberAccount\": \"12334344\",\n\t\"accountType\": \"SAVINGS\",\n\t\"openingBalance\": 0.0\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_base_microservice_movement}}/accounts",
+							"host": [
+								"{{url_base_microservice_movement}}"
+							],
+							"path": [
+								"accounts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update-account",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"clientId\": \"b8d66530-86c0-4d43-8983-4a6128824249\",\n    \"numberAccount\": \"1234\",\n    \"accountType\": \"SAVINGS\",\n    \"clientName\": \"Jose mendoza\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_base_microservice_movement}}/accounts",
+							"host": [
+								"{{url_base_microservice_movement}}"
+							],
+							"path": [
+								"accounts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete-account",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"clientId\": \"90041757-156b-4de6-ae24-784f1f5e8a99\",\n    \"numberAccount\": \"103034\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_base_microservice_movement}}/accounts",
+							"host": [
+								"{{url_base_microservice_movement}}"
+							],
+							"path": [
+								"accounts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get-accounts-by-client",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url_base_microservice_movement}}/accounts?clientId=b8d66530-86c0-4d43-8983-4a6128824249",
+							"host": [
+								"{{url_base_microservice_movement}}"
+							],
+							"path": [
+								"accounts"
+							],
+							"query": [
+								{
+									"key": "clientId",
+									"value": "b8d66530-86c0-4d43-8983-4a6128824249"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get-all-accounts",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url_base_microservice_movement}}/accounts",
+							"host": [
+								"{{url_base_microservice_movement}}"
+							],
+							"path": [
+								"accounts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "register-movement",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"clientId\": \"2bc6fe15-bd24-495c-b994-0a705f7b5b82\",\n    \"numberAccount\": \"12334344\",\n    \"movementType\": \"DEPOSIT\",\n    \"amount\": 2.0\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_base_microservice_movement}}/movements",
+							"host": [
+								"{{url_base_microservice_movement}}"
+							],
+							"path": [
+								"movements"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ger-reports-accounts-by-client",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url_base_microservice_movement}}/reports?id=b8d66530-86c0-4d43-8983-4a6128824240",
+							"host": [
+								"{{url_base_microservice_movement}}"
+							],
+							"path": [
+								"reports"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "b8d66530-86c0-4d43-8983-4a6128824240"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get-reports-movements-by-account",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url_base_microservice_movement}}/reports?id=2bc6fe15-bd24-495c-b994-0a705f7b5b82&account=12334344&dateStart=12-11-2023",
+							"host": [
+								"{{url_base_microservice_movement}}"
+							],
+							"path": [
+								"reports"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "2bc6fe15-bd24-495c-b994-0a705f7b5b82"
+								},
+								{
+									"key": "account",
+									"value": "12334344"
+								},
+								{
+									"key": "dateStart",
+									"value": "12-11-2023"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

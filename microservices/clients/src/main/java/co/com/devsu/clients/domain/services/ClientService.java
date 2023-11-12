@@ -5,11 +5,13 @@ import co.com.devsu.clients.domain.errors.ClientNotFound;
 import co.com.devsu.clients.domain.models.Client;
 import co.com.devsu.clients.domain.ports.ClientRepository;
 import io.vavr.control.Option;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+@Slf4j
 @Service
 public class ClientService {
 
@@ -47,6 +49,7 @@ public class ClientService {
     }
 
     public Flux<Client> getOneOrClients(Option<String> clientIdOpt) {
+        log.info("One or all users will be searched according to: {}", clientIdOpt);
         return clientIdOpt
           .map(clientId -> clientRepository.findById(clientId)
             .flatMap(clientOpt -> clientOpt

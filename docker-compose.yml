@@ -1,0 +1,82 @@
+version: "3.1"
+services:
+  client:
+    build: microservices/clients
+    container_name: microservice-client-devsu
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+    ports: 
+      - "${SERVER_PORT_CLIENT}:8080"
+    volumes:
+      - $PWD/config-repo:/config-repo
+    environment:
+      - SPRING_CONFIG_LOCATION=file:/config-repo/application.yml
+      - RABBITMQ_USERNAME=${RABBITMQ_USERNAME}
+      - RABBITMQ_PASSWORD=${RABBITMQ_PASSWORD}
+      - RABBITMQ_HOST=${RABBITMQ_HOST}
+      - RABBITMQ_PORT=${RABBITMQ_PORT}
+      - DATASOURCE_USERNAME=${DATASOURCE_USERNAME}
+      - DATASOURCE_PASSWORD=${DATASOURCE_PASSWORD}
+      - DATASOURCE_DRIVER=${DATASOURCE_DRIVER}
+      - DATASOURCE_URL=${DATASOURCE_URL_CLIENT}
+    depends_on:
+      postgres:
+        condition: service_healthy
+      rabbitmq:
+        condition: service_healthy
+  movement:
+    build: microservices/movements
+    container_name: microservice-movement-devsu
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+    ports: 
+      - "${SERVER_PORT_MOVEMENT}:8080"
+    volumes:
+      - $PWD/config-repo:/config-repo
+    environment:
+      - RABBITMQ_USERNAME=${RABBITMQ_USERNAME}
+      - RABBITMQ_PASSWORD=${RABBITMQ_PASSWORD}
+      - RABBITMQ_HOST=${RABBITMQ_HOST}
+      - RABBITMQ_PORT=${RABBITMQ_PORT}
+      - DATASOURCE_USERNAME=${DATASOURCE_USERNAME}
+      - DATASOURCE_PASSWORD=${DATASOURCE_PASSWORD}
+      - DATASOURCE_DRIVER=${DATASOURCE_DRIVER}
+      - DATASOURCE_URL=${DATASOURCE_URL_MOVEMENT}
+    depends_on:
+      postgres:
+        condition: service_healthy
+      rabbitmq:
+        condition: service_healthy
+  rabbitmq:
+    container_name: devsu-rabbit
+    image: rabbitmq:3-management
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    healthcheck:
+      test: ["CMD", "rabbitmqctl", "status"]
+      interval: 5s
+      timeout: 2s
+      retries: 60
+    environment:
+      RABBITMQ_DEFAULT_USER: ${RABBITMQ_USERNAME}
+      RABBITMQ_DEFAULT_PASS: ${RABBITMQ_PASSWORD}
+  postgres:
+    container_name: devsu-postgres
+    image: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./data/:/docker-entrypoint-initdb.d
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready"]
+      interval: 10s
+      timeout: 5s
+      retries: 5 
+    environment:
+      POSTGRES_USER: ${DATASOURCE_USERNAME}
+      POSTGRES_PASSWORD: ${DATASOURCE_PASSWORD}

@@ -42,13 +42,13 @@ public class ClientController {
         this.publisher = publisher;
     }
 
-    @GetMapping(value = "/clientes", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/clients", produces = MediaType.APPLICATION_JSON_VALUE)
     public Flux<GetClientResonse> getClient(@RequestParam(name = "id", required = false) Optional<String> clientOpt) {
         return clientService.getOneOrClients(Option.ofOptional(clientOpt))
           .map(clientTransformer::toDto);
     }
 
-    @PostMapping(value = "/clientes", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/clients", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     public Mono<ResponseEntity<RegisterClientResponse>> registerClient(@RequestBody RegisterClientRequest registerClientRequest) {
         return Mono.just(clientTransformer.toDomain(registerClientRequest))
           .flatMap(clientService::registerClient)
@@ -59,7 +59,7 @@ public class ClientController {
           .log();
     }
 
-    @PutMapping(value = "/clientes", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PutMapping(value = "/clients", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     public Mono<ResponseEntity<GetClientResonse>> updateClient(@RequestBody UpdateClientRequest updateClientRequest) {
         return Mono.just(clientTransformer.toDomain(updateClientRequest))
           .flatMap(clientService::updateClient)
@@ -70,7 +70,7 @@ public class ClientController {
           .log();
     }
 
-    @DeleteMapping(value = "/clientes", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @DeleteMapping(value = "/clients", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     public Mono<ResponseEntity<DeleteClienteResponse>> deleteClient(@RequestBody DeleteClientRequest deleteClientRequest) {
         return clientService.deleteClient(deleteClientRequest.getClientId())
           .doOnSuccess(client -> publisher.publish(new ClientDeleted(client)))

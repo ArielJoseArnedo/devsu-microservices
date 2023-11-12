@@ -1,10 +1,12 @@
 package co.com.devsu.clients.infrastructure.acl.dtos.responses;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
+import lombok.NoArgsConstructor;
 
 @Getter
-@RequiredArgsConstructor
+@NoArgsConstructor
+@AllArgsConstructor
 public class DeleteClienteResponse {
-    private final String clientId;
+    private String clientId;
 }
